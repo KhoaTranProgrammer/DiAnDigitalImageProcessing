@@ -15,7 +15,7 @@
 */
 
 /******************
- * VERSION: 1.0.0 *
+ * VERSION: 1.0.1 *
  *****************/
 
 /********************************************************************
@@ -35,6 +35,10 @@
  *         DaDip_Rotation_180_Degree                                *
  *         DaDip_Rotation_270_Degree                                *
  *         DaDip_Rotation                                           *
+ * 1.0.1: Mar-17-2019                                               *
+ *        Fix error out of range of APIs:                           *
+ *         DaDip_Rotation_180_Degree                                *
+ *         DaDip_Rotation_270_Degree                                *
  *******************************************************************/
 
 #include "DADIP_Rotate.h"
@@ -193,7 +197,7 @@ DADIP_PTRIMAGE DaDip_Rotation_180_Degree(DADIP_PTRIMAGE inputimg)
             k = 0;
             do
             {
-                PIXELATIMAGE(outputimg, i, j * (int)bytesperpixel + k) = PIXELATIMAGE(inputimg, HEIGHT(inputimg) - i, (WIDTH(inputimg) - j) * (int)bytesperpixel + k);
+                PIXELATIMAGE(outputimg, i, j * (int)bytesperpixel + k) = PIXELATIMAGE(inputimg, HEIGHT(inputimg) - 1 - i, (WIDTH(inputimg) - 1 - j) * (int)bytesperpixel + k);
                 k++;
             } while (k < bytesperpixel);
         }
@@ -219,7 +223,7 @@ DADIP_PTRIMAGE DaDip_Rotation_270_Degree(DADIP_PTRIMAGE inputimg)
     /* Calculate numer of bytes per pixel */
     bytesperpixel = DaDip_Get_Bytes_From_Depth(DEPTH(inputimg));
 
-    /* Perform Rotation 90 Degree */
+    /* Perform Rotation 270 Degree */
     for (i = 0; i < HEIGHT(inputimg); i++)
     {
         for (j = 0; j < WIDTH(inputimg); j++)
@@ -227,7 +231,7 @@ DADIP_PTRIMAGE DaDip_Rotation_270_Degree(DADIP_PTRIMAGE inputimg)
             k = 0;
             do
             {
-                PIXELATIMAGE(outputimg, j, (HEIGHT(inputimg) - 1 - i) * (int)bytesperpixel + k) = PIXELATIMAGE(inputimg, HEIGHT(inputimg) - i, (WIDTH(inputimg) - j) * (int)bytesperpixel + k);
+                PIXELATIMAGE(outputimg, j, (HEIGHT(inputimg) - 1 - i) * (int)bytesperpixel + k) = PIXELATIMAGE(inputimg, HEIGHT(inputimg) - 1 - i, (WIDTH(inputimg) - 1 - j) * (int)bytesperpixel + k);
                 k++;
             } while (k < bytesperpixel);
         }
