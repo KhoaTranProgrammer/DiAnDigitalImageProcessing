@@ -15,7 +15,7 @@
 */
 
 /******************
- * VERSION: 1.0.1 *
+ * VERSION: 1.0.2 *
  *****************/
 
 /********************************************************************
@@ -39,6 +39,8 @@
  *        Fix error out of range of APIs:                           *
  *         DaDip_Rotation_180_Degree                                *
  *         DaDip_Rotation_270_Degree                                *
+ * 1.0.2: Mar-17-2019                                               *
+ *        Change the parameter names of API: DaDip_Rotation         *
  *******************************************************************/
 
 #include "DADIP_Rotate.h"
@@ -244,7 +246,7 @@ ERR_END
 }
 
 /* Implementation of API to perform rotation in any point of origin */
-DADIP_PTRIMAGE DaDip_Rotation(DADIP_PTRIMAGE inputimg, dadip_int m, dadip_int n, dadip_float angle)
+DADIP_PTRIMAGE DaDip_Rotation(DADIP_PTRIMAGE inputimg, dadip_int xorigin, dadip_int yorigin, dadip_float angle)
 {
     dadip_int i, j, k, new_y, new_x;
     dadip_double cosa, sina, radian_angle;

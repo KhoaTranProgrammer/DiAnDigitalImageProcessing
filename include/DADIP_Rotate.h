@@ -15,7 +15,7 @@
 */
 
 /******************
- * VERSION: 1.0.0 *
+ * VERSION: 1.0.1 *
  *****************/
 
 /********************************************************************
@@ -30,6 +30,8 @@
  * 1.0.0: Mar-07-2019                                               *
  *        Initial version with API to rotate 90/180/270/any origin, *
  *        flip vertical, flip horizontal                            *
+ * 1.0.1: Mar-17-2019                                               *
+ *        Change the parameter names of API: DaDip_Rotation         *
  *******************************************************************/
 
 #ifndef DADIP_ROTATE_H
@@ -123,15 +125,15 @@ DADIP_PTRIMAGE DaDip_Rotation_270_Degree(DADIP_PTRIMAGE inputimg);
  *
  *  inputimg(I): input image
  *
- *  m(I): x origin  
+ *  xorigin(I): x origin  
  *
- *  n(I): y origin
+ *  yorigin(I): y origin
  *
  *  angle(I): degree of rotation
  *
  *  return: output image
  */
-DADIP_PTRIMAGE DaDip_Rotation(DADIP_PTRIMAGE inputimg, dadip_int m, dadip_int n, dadip_float angle);
+DADIP_PTRIMAGE DaDip_Rotation(DADIP_PTRIMAGE inputimg, dadip_int xorigin, dadip_int yorigin, dadip_float angle);
 
 #ifdef __cplusplus
 }
