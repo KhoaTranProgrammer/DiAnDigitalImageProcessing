@@ -271,13 +271,13 @@ DADIP_PTRIMAGE DaDip_Rotation(DADIP_PTRIMAGE inputimg, dadip_int xorigin, dadip_
     {
         for (j = 0; j < WIDTH(inputimg); j++)
         {
-            /* new x = x.cos(a) - y.sin(a) -m.cos(a) + m + n.sin(a) */
+            /* new x = x.cos(a) - y.sin(a) - xorigin.cos(a) + xorigin + yorigin.sin(a) */
             new_x = (dadip_double)(j)*cosa - (dadip_double)(i)*sina
-                  - (dadip_double)(m)*cosa + (dadip_double)(m) + (dadip_double)(n)*sina;
+                  - (dadip_double)(xorigin)*cosa + (dadip_double)(xorigin) + (dadip_double)(yorigin)*sina;
 
-            /*new y = y.cos(a) + x.sin(a) - m.sin(a) - n.cos(a) + n */
+            /* new y = y.cos(a) + x.sin(a) - xorigin.sin(a) - yorigin.cos(a) + yorigin */
             new_y = (dadip_double)(i)*cosa + (dadip_double)(j)*sina
-                  - (dadip_double)(m)*sina - (dadip_double)(n)*cosa + (dadip_double)(n);
+                  - (dadip_double)(xorigin)*sina - (dadip_double)(yorigin)*cosa + (dadip_double)(yorigin);
             
             k = 0;
             do
