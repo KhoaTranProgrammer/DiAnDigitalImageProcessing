@@ -294,6 +294,7 @@ DADIP_PTRIMAGE DaDip_Paste(DADIP_PTRIMAGE inputimg1, DADIP_PTRIMAGE inputimg2,
     /* Calculate number of bytes per pixel */
     bytesperpixel = DaDip_Get_Bytes_From_Depth(DEPTH(inputimg1));
 
+    /* Copy cropping of second input image to output */
     for (i = startrowofimg1; i < (newheight + startrowofimg1); i++)
     {
         for (j = startcolofimg1; j < (newwidth + startcolofimg1); j++)
