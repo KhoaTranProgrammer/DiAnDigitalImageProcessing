@@ -13,7 +13,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+    ../../source/DADIP_BMP.c \
+    ../../source/DADIP_Convert.c \
+    ../../source/DADIP_FileIO.c \
+    ../../source/DADIP_Filter.c \
+    ../../source/DADIP_Geometry.c \
+    ../../source/DADIP_Histogram.c \
+    ../../source/DADIP_ImageIO.c \
+    ../../source/DADIP_Math.c \
+    ../../source/DADIP_Overlay.c \
+    ../../source/DADIP_Rotate.c \
+    ../../source/DADIP_Utility.c \
+    ../../source/DADIP_Warping.c
 
 RESOURCES += qml.qrc
 
@@ -27,3 +39,18 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+HEADERS += \
+    ../../include/DADIP_BMP.h \
+    ../../include/DADIP_Convert.h \
+    ../../include/DADIP_FileIO.h \
+    ../../include/DADIP_Filter.h \
+    ../../include/DADIP_Geometry.h \
+    ../../include/DADIP_Histogram.h \
+    ../../include/DADIP_ImageIO.h \
+    ../../include/DADIP_Math.h \
+    ../../include/DADIP_Overlay.h \
+    ../../include/DADIP_Rotate.h \
+    ../../include/DADIP_Type.h \
+    ../../include/DADIP_Utility.h \
+    ../../include/DADIP_Warping.h
