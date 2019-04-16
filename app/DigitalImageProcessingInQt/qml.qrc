@@ -3,5 +3,11 @@
         <file>main.qml</file>
         <file>image/obama.bmp</file>
         <file>image/sala.bmp</file>
+        <file>image/close.png</file>
+        <file>image/detail.png</file>
+        <file>image/groupclose.png</file>
+        <file>image/groupopen.png</file>
+        <file>image/histogram.png</file>
+        <file>image/save.png</file>
     </qresource>
 </RCC>
