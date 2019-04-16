@@ -56,6 +56,31 @@ Rectangle {
         width: root.width * 0.23
         height: root.height * 0.1
         color: "transparent"
+
+        // Exit button
+        Rectangle {
+            anchors {
+                top: parent.top
+                right: parent.right
+                margins: parent.width * 0.01
+            }
+            width: parent.width * 0.2
+            height: parent.width * 0.2
+            color: "transparent"
+
+            Image {
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+                source: 'image//close.png'
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    Qt.quit()
+                }
+            }
+        }
     }
 
     // Area to list up features
