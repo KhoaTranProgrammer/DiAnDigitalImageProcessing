@@ -22,6 +22,15 @@ Rectangle {
         width: root.width * 0.2
         height: root.height * 0.1
         color: "transparent"
+
+        Text {
+            anchors.fill: parent
+            text: "Digital Image Processing In Qt"
+            font.pixelSize: parent.height / 3
+            font.bold: true
+            color: "black"
+            wrapMode: Text.WordWrap
+        }
     }
 
     // Area for input/output selection
