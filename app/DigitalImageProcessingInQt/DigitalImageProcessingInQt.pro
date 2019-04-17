@@ -54,3 +54,5 @@ HEADERS += \
     ../../include/DADIP_Type.h \
     ../../include/DADIP_Utility.h \
     ../../include/DADIP_Warping.h
+
+INCLUDEPATH += $$PWD/../../include/
