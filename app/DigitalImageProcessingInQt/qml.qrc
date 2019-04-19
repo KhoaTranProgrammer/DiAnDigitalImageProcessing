@@ -9,5 +9,7 @@
         <file>image/groupopen.png</file>
         <file>image/histogram.png</file>
         <file>image/save.png</file>
+        <file>Common.js</file>
+        <file>control/BasicControl.qml</file>
     </qresource>
 </RCC>

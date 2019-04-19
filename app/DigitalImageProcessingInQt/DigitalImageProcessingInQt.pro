@@ -25,7 +25,9 @@ SOURCES += \
     ../../source/DADIP_Overlay.c \
     ../../source/DADIP_Rotate.c \
     ../../source/DADIP_Utility.c \
-    ../../source/DADIP_Warping.c
+    ../../source/DADIP_Warping.c \
+    DIPFeatures.cpp \
+    DIPShowImage.cpp
 
 RESOURCES += qml.qrc
 
@@ -53,6 +55,11 @@ HEADERS += \
     ../../include/DADIP_Rotate.h \
     ../../include/DADIP_Type.h \
     ../../include/DADIP_Utility.h \
-    ../../include/DADIP_Warping.h
+    ../../include/DADIP_Warping.h \
+    DIPFeatures.h \
+    DIPShowImage.h
 
 INCLUDEPATH += $$PWD/../../include/
+
+# Default location for input image
+DEFINES += PROJECT_PATH=\\\"$$PWD\\\"

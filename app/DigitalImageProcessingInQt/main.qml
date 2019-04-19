@@ -1,8 +1,19 @@
 import QtQuick 2.6
+import DIPShowImage 1.0
 
 Rectangle {
     id: root
     anchors.fill: parent
+
+    // Default input image
+    property string inputimage: defaultinput + "/image/obama.bmp"
+
+    Component.onCompleted: {
+        // Display default input image
+        dipFeatures.dipSetImageSource(inputimage)
+        dipFeatures.dipLoadImage()
+        id_inputimage.image = dipFeatures.dipConvertInput2QImage()
+    }
 
     // Background
     gradient: Gradient {
@@ -105,6 +116,12 @@ Rectangle {
         width: root.width * 0.44
         height: root.height * 0.7
         color: "transparent"
+
+        DIPShowImage {
+            id: id_inputimage
+            anchors.centerIn: parent
+            anchors.fill: parent
+        }
     }
 
     // Area to display output image
