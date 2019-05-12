@@ -41,6 +41,9 @@ public slots:
     // Convert Output Image to QImage for display on QML
     QImage dipConvertOutput2QImage();
 
+    // Convert RGB to grayscale
+    void dipConvertRGBToGrayScale();
+
 private:
     // Use for measuring processing time
     QElapsedTimer m_timer;

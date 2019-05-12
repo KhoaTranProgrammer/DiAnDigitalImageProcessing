@@ -1,4 +1,5 @@
 #include "DIPFeatures.h"
+#include "DADIP_Convert.h"
 
 // The static instance of DIPFeatures
 static DIPFeatures *myDIPFeatures = NULL;
@@ -147,4 +148,13 @@ QImage DIPFeatures::dipConvertOutput2QImage()
     }
 
     return image;
+}
+
+// Implement to convert RGB to grayscale
+void DIPFeatures::dipConvertRGBToGrayScale()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Convert_RGB_To_GrayScale(m_input);
+    }
 }
