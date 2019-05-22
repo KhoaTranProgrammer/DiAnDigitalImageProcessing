@@ -1,4 +1,5 @@
 import QtQuick 2.6
+import QtQuick.Dialogs 1.0
 import DIPShowImage 1.0
 import "Common.js" as Common
 
@@ -12,8 +13,17 @@ Rectangle {
     // This property is changed when Feature is updated
     property bool refreshfeature: false
 
+    // Decide input or output is selected
+    property bool isChooseInput: false
+
+    // Hold status of detail information is displayed or not
+    property bool isClickedDetail: false
+
     // Default input image
     property string inputimage: defaultinput + "/image/obama.bmp"
+
+    // Default output image
+    property string outputimage: defaultinput + "/image/output.bmp"
 
     QtObject {
         id: id_data
@@ -87,6 +97,146 @@ Rectangle {
         height: root.height * 0.1
         color: "transparent"
 
+        // Button to select Input Image
+        Rectangle {
+            anchors {
+                left: parent.left
+                top: parent.top
+                margins: parent.height * 0.03
+            }
+            width: parent.width * 0.25
+            height: parent.height * 0.45
+            radius: parent.height
+
+            // Static text to display "Choose Input"
+            Text {
+                anchors.centerIn: parent
+                text: "Choose Input"
+                font.pixelSize: parent.height * 0.5
+                font.bold: true
+                color: "black"
+            }
+
+            // When user clicks, display FileDialog and announce Input is selected
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    id_fileDialog.visible = true
+                    isChooseInput = true
+                }
+            }
+        }
+
+        // Display Input File Name
+        Rectangle {
+            anchors {
+                right: parent.right
+                top: parent.top
+                margins: parent.height * 0.03
+            }
+            width: parent.width * 0.74
+            height: parent.height * 0.45
+            radius: parent.height
+
+            // Text to display full input image location
+            Text {
+                anchors {
+                    left: parent.left
+                    leftMargin: parent.height * 0.2
+                    verticalCenter: parent.verticalCenter
+                }
+                text: inputimage
+                font.pixelSize: parent.height * 0.3
+                color: "black"
+                wrapMode: Text.WordWrap
+            }
+        }
+
+        // Button to select Output Image
+        Rectangle {
+            anchors {
+                left: parent.left
+                bottom: parent.bottom
+                margins: parent.height * 0.03
+            }
+            width: parent.width * 0.25
+            height: parent.height * 0.45
+            radius: parent.height
+
+            // Static text to display "Choose Output"
+            Text {
+                anchors.centerIn: parent
+                text: "Choose Output"
+                font.pixelSize: parent.height * 0.5
+                font.bold: true
+                color: "black"
+            }
+
+            // When user clicks, display FileDialog and announce Output is selected
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    id_fileDialog.visible = true
+                    isChooseInput = false
+                }
+            }
+        }
+
+        // Display Output File Name
+        Rectangle {
+            anchors {
+                right: parent.right
+                bottom: parent.bottom
+                margins: parent.height * 0.03
+            }
+            width: parent.width * 0.74
+            height: parent.height * 0.45
+            radius: parent.height
+
+            // Text to display full output image location
+            Text {
+                anchors {
+                    left: parent.left
+                    leftMargin: parent.height * 0.2
+                    verticalCenter: parent.verticalCenter
+                }
+                text: outputimage
+                font.pixelSize: parent.height * 0.3
+                color: "black"
+                wrapMode: Text.WordWrap
+            }
+        }
+    }
+
+    // FileDialog to select file
+    FileDialog {
+        id: id_fileDialog
+        title: "Please choose a file"
+        folder: shortcuts.home
+        onAccepted: {
+            if(isChooseInput){ // Processing in case of input
+                var path = id_fileDialog.fileUrl.toString()
+                path = path.replace(/^(file:\/{3})/, "")
+                // Update Input image location
+                inputimage = decodeURIComponent(path)
+
+                // Reset data
+                id_inputimage.freeImage()
+                id_outputimage.freeImage()
+                id_executingTime.text = ""
+                dipFeatures.dipResetData()
+                dipFeatures.dipSetImageSource(inputimage)
+                dipFeatures.dipLoadImage()
+                id_inputimage.image = dipFeatures.dipConvertInput2QImage()
+                current_feature = ""
+                root.refreshfeature = !root.refreshfeature
+            }else{ // Processing in case of output
+                var path = id_fileDialog.fileUrl.toString()
+                path = path.replace(/^(file:\/{3})/, "")
+                // Update Output image location
+                outputimage = decodeURIComponent(path)
+            }
+        }
     }
 
     // Area for exit processing
@@ -165,6 +315,18 @@ Rectangle {
             anchors.centerIn: parent
             anchors.fill: parent
         }
+
+        // Text to display detail information of input image
+        Text {
+            id: id_inputimagearea_detail
+            anchors.fill: parent
+            text: "WIDTH: " + dipFeatures.getInputWidth() + "\n" +
+                  "HEIGHT: " + dipFeatures.getInputHeight() + "\n" +
+                  "DEPTH: " + dipFeatures.getInputDepth()
+            font.pixelSize: parent.height * 0.05
+            color: "black"
+            visible: false
+        }
     }
 
     // Area to display output image
@@ -182,6 +344,18 @@ Rectangle {
             id: id_outputimage
             anchors.centerIn: parent
             anchors.fill: parent
+        }
+
+        // Text to display detail information of output image
+        Text {
+            id: id_outputimagearea_detail
+            anchors.fill: parent
+            text: "WIDTH: " + dipFeatures.getOutputWidth() + "\n" +
+                  "HEIGHT: " + dipFeatures.getOutputHeight() + "\n" +
+                  "DEPTH: " + dipFeatures.getOutputDepth()
+            font.pixelSize: parent.height * 0.05
+            color: "black"
+            visible: false
         }
     }
 
@@ -266,6 +440,83 @@ Rectangle {
         width: root.width * 0.03
         height: width * 3.2
         color: "transparent"
+
+        // Button to save output image to file
+        Rectangle {
+            id: id_save
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right
+                margins: 2
+            }
+            height: parent.width
+            radius: height * 0.2
+
+            // Image for button
+            Image {
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+                source: 'image//save.png'
+            }
+
+            // When user clicks, write output to BMP file
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    dipFeatures.dipWriteBmp(outputimage)
+                }
+            }
+        }
+
+        // Button to show up detail information of input/output image
+        Rectangle {
+            id: id_detail
+            anchors {
+                top: id_save.bottom
+                left: parent.left
+                right: parent.right
+                margins: 2
+            }
+            height: parent.width
+            radius: height * 0.2
+
+            // Image for button
+            Image {
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+                source: 'image//detail.png'
+            }
+
+            // When user clicks, processing to show information
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    root.isClickedDetail = !root.isClickedDetail
+                    if(root.isClickedDetail){ // In case of enable detail information
+                        id_detail.color = "#FFDE03"
+
+                        // Display input information
+                        id_inputimagearea_detail.visible = true
+                        id_inputimagearea_detail.text =
+                                "WIDTH: " + dipFeatures.getInputWidth() + "\n" +
+                                "HEIGHT: " + dipFeatures.getInputHeight() + "\n" +
+                                "DEPTH: " + dipFeatures.getInputDepth()
+
+                        // Display output information
+                        id_outputimagearea_detail.visible = true
+                        id_outputimagearea_detail.text =
+                                "WIDTH: " + dipFeatures.getOutputWidth() + "\n" +
+                                "HEIGHT: " + dipFeatures.getOutputHeight() + "\n" +
+                                "DEPTH: " + dipFeatures.getOutputDepth()
+                    }else{ // In case of disable detail information
+                        id_detail.color = "white"
+                        id_inputimagearea_detail.visible = false
+                        id_outputimagearea_detail.visible = false
+                    }
+                }
+            }
+        }
     }
 
     // Store the list of Features
@@ -434,5 +685,13 @@ Rectangle {
 
         // Convert output image to QImage for display
         id_outputimage.image = dipFeatures.dipConvertOutput2QImage()
+
+        // Update output image information to display in detail area
+        if(root.isClickedDetail){
+            id_outputimagearea_detail.text =
+                    "WIDTH: " + dipFeatures.getOutputWidth() + "\n" +
+                    "HEIGHT: " + dipFeatures.getOutputHeight() + "\n" +
+                    "DEPTH: " + dipFeatures.getOutputDepth()
+        }
     }
 }

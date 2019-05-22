@@ -32,9 +32,20 @@ public slots:
     // Load Image
     void dipLoadImage();
 
+    // Get image data
+    int getInputWidth();
+    int getInputHeight();
+    int getInputDepth();
+    int getOutputWidth();
+    int getOutputHeight();
+    int getOutputDepth();
+
     // Reset data
     void dipResetData();
 
+    // Write BMP image
+    void dipWriteBmp(const QString& source);
+	
     // Convert Input Image to QImage for display on QML
     QImage dipConvertInput2QImage();
 

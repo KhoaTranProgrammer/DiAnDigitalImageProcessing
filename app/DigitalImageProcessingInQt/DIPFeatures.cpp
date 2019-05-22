@@ -1,5 +1,6 @@
 #include "DIPFeatures.h"
 #include "DADIP_Convert.h"
+#include "DADIP_BMP.h"
 
 // The static instance of DIPFeatures
 static DIPFeatures *myDIPFeatures = NULL;
@@ -59,6 +60,44 @@ void DIPFeatures::dipLoadImage()
     }
 }
 
+// Implementation of getting input image data
+int DIPFeatures::getInputWidth()
+{
+    if(m_input) return WIDTH(m_input);
+    return 0;
+}
+
+int DIPFeatures::getInputHeight()
+{
+    if(m_input) return HEIGHT(m_input);
+    return 0;
+}
+
+int DIPFeatures::getInputDepth()
+{
+    if(m_input) return DEPTH(m_input);
+    return 0;
+}
+
+// Implementation of getting output image data
+int DIPFeatures::getOutputWidth()
+{
+    if(m_output) return WIDTH(m_output);
+    return 0;
+}
+
+int DIPFeatures::getOutputHeight()
+{
+    if(m_output) return HEIGHT(m_output);
+    return 0;
+}
+
+int DIPFeatures::getOutputDepth()
+{
+    if(m_output) return DEPTH(m_output);
+    return 0;
+}
+
 // Implementation to reset application data
 void DIPFeatures::dipResetData()
 {
@@ -68,6 +107,16 @@ void DIPFeatures::dipResetData()
     if(m_output != NULL) m_output->destroy(m_output);
     m_input = NULL;
     m_output = NULL;
+}
+
+// Implementation of writing BMP image
+void DIPFeatures::dipWriteBmp(const QString& source)
+{
+    if(m_output != NULL) {
+        QByteArray array;
+        array = source.toLocal8Bit();
+        DaDip_Write_Bmp(m_output, (dadip_char*)array.data());
+    }
 }
 
 // Implement to convert Input Image to QImage for display on QML
