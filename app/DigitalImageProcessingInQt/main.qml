@@ -19,6 +19,9 @@ Rectangle {
     // Hold status of detail information is displayed or not
     property bool isClickedDetail: false
 
+    // Hold status of histogram is displayed or not
+    property bool isClickedHistogram: false
+
     // Default input image
     property string inputimage: defaultinput + "/image/obama.bmp"
 
@@ -230,6 +233,13 @@ Rectangle {
                 id_inputimage.image = dipFeatures.dipConvertInput2QImage()
                 current_feature = ""
                 root.refreshfeature = !root.refreshfeature
+
+                // When new file is loaded, also update histogram
+                if(root.isClickedHistogram){
+                    dipFeatures.dipCalculateHistogramInput()
+                    id_histogramInputArea.show()
+                    id_histogramOutputArea.stop()
+                }
             }else{ // Processing in case of output
                 var path = id_fileDialog.fileUrl.toString()
                 path = path.replace(/^(file:\/{3})/, "")
@@ -517,6 +527,67 @@ Rectangle {
                 }
             }
         }
+
+        // Button to show up histogram of input/output image
+        Rectangle {
+            id: id_histogram
+            anchors {
+                top: id_detail.bottom
+                left: parent.left
+                right: parent.right
+                margins: 2
+            }
+            height: parent.width
+            radius: height * 0.2
+
+            // Image for button
+            Image {
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectFit
+                source: 'image//histogram.png'
+            }
+
+            // When user clicks, processing to show histogram
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    root.isClickedHistogram = !root.isClickedHistogram
+                    if(root.isClickedHistogram){ // In case of enable histogram
+                        id_histogram.color = "#FFDE03"
+
+                        // Calculate and display Histogram for Input
+                        dipFeatures.dipCalculateHistogramInput()
+                        id_histogramInputArea.show()
+
+                        // Calculate and display Histogram for Output
+                        if(current_feature) {
+                            dipFeatures.dipCalculateHistogramOutput()
+                            id_histogramOutputArea.show()
+                        }
+                    }else{ // In case of disable histogram
+                        id_histogram.color = "white"
+
+                        // Stop display for both of Input/Output
+                        id_histogramInputArea.stop()
+                        id_histogramOutputArea.stop()
+                    }
+                }
+            }
+        }
+    }
+
+    // Area for Input image histogram
+    HistogramArea {
+        id: id_histogramInputArea
+        anchors.fill: id_inputimagearea
+        isInput: true
+    }
+
+    // Area for Output image histogram
+    HistogramArea {
+        id: id_histogramOutputArea
+        anchors.fill: id_outputimagearea
+        isInput: false
     }
 
     // Store the list of Features
@@ -692,6 +763,12 @@ Rectangle {
                     "WIDTH: " + dipFeatures.getOutputWidth() + "\n" +
                     "HEIGHT: " + dipFeatures.getOutputHeight() + "\n" +
                     "DEPTH: " + dipFeatures.getOutputDepth()
+        }
+
+        // Update histogram information of output image
+        if(root.isClickedHistogram){
+            dipFeatures.dipCalculateHistogramOutput()
+            id_histogramOutputArea.show()
         }
     }
 }

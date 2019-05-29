@@ -11,5 +11,7 @@
         <file>image/save.png</file>
         <file>Common.js</file>
         <file>control/BasicControl.qml</file>
+        <file>HistogramArea.qml</file>
+        <file>control/HistogramControl.qml</file>
     </qresource>
 </RCC>

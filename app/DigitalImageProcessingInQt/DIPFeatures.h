@@ -6,6 +6,7 @@
 #include <QPainter>
 #include <QElapsedTimer>
 #include "DADIP_ImageIO.h"
+#include "DADIP_Histogram.h"
 
 class DIPFeatures : public QObject
 {
@@ -45,7 +46,16 @@ public slots:
 
     // Write BMP image
     void dipWriteBmp(const QString& source);
-	
+
+    // Calculate Histogram for Input image
+    void dipCalculateHistogramInput();
+    // Calculate Histogram for Output image
+    void dipCalculateHistogramOutput();
+    // Get Histogram data at specific position of Input image
+    int dipGetHistogramInputAt(int channel, int pos);
+    // Get Histogram data at specific position of Output image
+    int dipGetHistogramOutputAt(int channel, int pos);
+
     // Convert Input Image to QImage for display on QML
     QImage dipConvertInput2QImage();
 
@@ -68,6 +78,10 @@ private:
     // Input/Output image with DADIP_IMAGE structure
     DADIP_IMAGE* m_input = NULL;
     DADIP_IMAGE* m_output = NULL;
+
+    // Stores histogram data of Input/Output image
+    DADIP_HISTOGRAM* m_histogramInput = NULL;
+    DADIP_HISTOGRAM* m_histogramOutput = NULL;
 };
 
 #endif // DIPFEATURES_H

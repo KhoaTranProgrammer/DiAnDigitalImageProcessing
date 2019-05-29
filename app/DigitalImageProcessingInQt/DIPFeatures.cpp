@@ -119,6 +119,58 @@ void DIPFeatures::dipWriteBmp(const QString& source)
     }
 }
 
+// Implement to Calculate Histogram for Input image
+void DIPFeatures::dipCalculateHistogramInput()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_histogramInput != NULL) DaDip_Free_Histogram(m_histogramInput);
+        m_histogramInput = DaDip_Calculate_Histogram(m_input);
+    }
+}
+
+// Implement to Calculate Histogram for Output image
+void DIPFeatures::dipCalculateHistogramOutput()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_histogramOutput != NULL) DaDip_Free_Histogram(m_histogramOutput);
+        m_histogramOutput = DaDip_Calculate_Histogram(m_output);
+    }
+}
+
+// Implement to Get Histogram data at specific position of Input image
+int DIPFeatures::dipGetHistogramInputAt(int channel, int pos)
+{
+    if(m_state == DIP_LOADED) {
+        if((m_histogramInput != NULL) && pos >= 0 && pos <= 255) {
+            if(channel == DADIP_R) {
+                return m_histogramInput->histogramchannel1[pos];
+            }else if(channel == DADIP_G) {
+                return m_histogramInput->histogramchannel2[pos];
+            }else if(channel == DADIP_B) {
+                return m_histogramInput->histogramchannel3[pos];
+            }
+        }
+    }
+    return 0;
+}
+
+// Implement to Get Histogram data at specific position of Output image
+int DIPFeatures::dipGetHistogramOutputAt(int channel, int pos)
+{
+    if(m_state == DIP_LOADED) {
+        if((m_histogramOutput != NULL) && pos >= 0 && pos <= 255) {
+            if(channel == DADIP_R) {
+                return m_histogramOutput->histogramchannel1[pos];
+            }else if(channel == DADIP_G) {
+                return m_histogramOutput->histogramchannel2[pos];
+            }else if(channel == DADIP_B) {
+                return m_histogramOutput->histogramchannel3[pos];
+            }
+        }
+    }
+    return 0;
+}
+
 // Implement to convert Input Image to QImage for display on QML
 QImage DIPFeatures::dipConvertInput2QImage()
 {
