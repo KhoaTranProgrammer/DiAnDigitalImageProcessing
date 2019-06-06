@@ -171,6 +171,17 @@ int DIPFeatures::dipGetHistogramOutputAt(int channel, int pos)
     return 0;
 }
 
+// Implement to calculate Histogram Equalization
+void DIPFeatures::dipHistogramEqualization(int graylevels, int newgrays)
+{
+    DADIP_PTRHISTOGRAM histogramInput;
+    if(m_state == DIP_LOADED) {
+        histogramInput = DaDip_Calculate_Histogram(m_input);
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Histogram_Equalization(m_input, histogramInput, graylevels, newgrays);
+    }
+}
+
 // Implement to convert Input Image to QImage for display on QML
 QImage DIPFeatures::dipConvertInput2QImage()
 {

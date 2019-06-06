@@ -13,5 +13,7 @@
         <file>control/BasicControl.qml</file>
         <file>HistogramArea.qml</file>
         <file>control/HistogramControl.qml</file>
+        <file>control/CustomSlider.qml</file>
+        <file>control/HistogramEqualizationControl.qml</file>
     </qresource>
 </RCC>

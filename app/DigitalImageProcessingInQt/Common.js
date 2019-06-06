@@ -2,6 +2,7 @@
 // current_feature will be updated each time user selects feature
 var GroupItem = "GroupItem"
 var RGB2Gray = "ConvertRGB2Gray"
+var HistogramEqualization = "HistogramEqualization"
 
 /*
  Group format
@@ -29,7 +30,14 @@ var group_convert = [
     /* FeatureItem */ RGB2Gray, "", "Function: DaDip_Convert_RGB_To_GrayScale. API to convert from RGB to GrayScale image."
 ]
 
+// Group of Histogram Features
+var group_histogram = [
+    /* GroupItem */ "Histogram", GroupItem, "",
+    /* FeatureItem */ HistogramEqualization, "HistogramEqualizationControl.qml", "Function: DaDip_Histogram_Equalization. API to perform histogram equalization of input image"
+]
+
 // List of all groups. It is directly used by application to add feature list
 var group_list = [
-    /* Group of Convert Features*/ group_convert
+    /* Group of Convert Features */ group_convert,
+    /* Group of Histogram Features */ group_histogram
 ]

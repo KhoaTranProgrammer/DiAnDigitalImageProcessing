@@ -716,7 +716,25 @@ Rectangle {
 
                         // Load feature
                         if(control != Common.GroupItem){ // Click on none group item
+                            // Clear old control
+                            id_loaderControl.source = ""
                             id_textdescription.text = description
+                            if(control != ""){
+                                // Setting new control
+                                id_loaderControl.source = "control/" + control
+
+                                // Initialize data for new control
+                                var scene = null
+                                scene = id_loaderControl.item
+                                scene.parent = root
+                                scene.anchors.fill = id_controlarea
+                                scene.inputWidth = dipFeatures.getInputWidth()
+                                scene.inputHeight = dipFeatures.getInputHeight()
+                                // Connect signal controlInfor with slot controlInformationUpdate
+                                scene.controlInfor.connect(controlInformationUpdate)
+                                // Call initializeControls function
+                                scene.initializeControls()
+                            }
                             executeDIPFeatures()
                         }
                     }
@@ -729,7 +747,7 @@ Rectangle {
     Flickable {
         id: id_scrollview
         anchors.fill: id_featurearea
-        contentHeight: id_listFeatures.rowCount() * (id_featurearea.height / 20)
+        contentHeight: id_listFeatures.count * (id_featurearea.height / 20)
         clip: true
 
         Column {
@@ -741,14 +759,25 @@ Rectangle {
         }
     }
 
+    // Using to open control
+    Loader {
+        id: id_loaderControl
+    }
+
     // Function to call Digital Image Processing features
     function executeDIPFeatures() {
+        // Variable to get input arguments for DIP features
+        var scene = null
+        scene = id_loaderControl.item
+
         // Start counting timer
         dipFeatures.dipStartTimer()
 
         // The feature is decided by global property current_feature
         if(current_feature == Common.RGB2Gray){
             dipFeatures.dipConvertRGBToGrayScale()
+        }else if(current_feature == Common.HistogramEqualization){
+            dipFeatures.dipHistogramEqualization(256, scene.newGrays)
         }
 
         // Stop counting timer and display result
@@ -770,5 +799,10 @@ Rectangle {
             dipFeatures.dipCalculateHistogramOutput()
             id_histogramOutputArea.show()
         }
+    }
+
+    // This is processing slot for signal controlInfor
+    function controlInformationUpdate() {
+        executeDIPFeatures()
     }
 }

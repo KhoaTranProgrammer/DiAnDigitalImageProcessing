@@ -55,6 +55,8 @@ public slots:
     int dipGetHistogramInputAt(int channel, int pos);
     // Get Histogram data at specific position of Output image
     int dipGetHistogramOutputAt(int channel, int pos);
+    // Calculate Histogram Equalization
+    void dipHistogramEqualization(int graylevels, int newgrays);
 
     // Convert Input Image to QImage for display on QML
     QImage dipConvertInput2QImage();
