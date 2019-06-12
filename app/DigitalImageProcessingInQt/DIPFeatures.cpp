@@ -1,5 +1,6 @@
 #include "DIPFeatures.h"
 #include "DADIP_Convert.h"
+#include "DADIP_Rotate.h"
 #include "DADIP_BMP.h"
 
 // The static instance of DIPFeatures
@@ -270,3 +271,58 @@ void DIPFeatures::dipConvertRGBToGrayScale()
         m_output = DaDip_Convert_RGB_To_GrayScale(m_input);
     }
 }
+
+// Implementation of Vertical Flipping
+void DIPFeatures::dipFlipVertical()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Flip_Vertical(m_input);
+    }
+}
+
+// Implementation of Horizontal Flipping
+void DIPFeatures::dipFlipHorizontal()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Flip_Horizontal(m_input);
+    }
+}
+
+// Implementation of 90 Degree Rotation
+void DIPFeatures::dipRotation90()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Rotation_90_Degree(m_input);
+    }
+}
+
+// Implementation of 180 Degree Rotation
+void DIPFeatures::dipRotation180()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Rotation_180_Degree(m_input);
+    }
+}
+
+// Implementation of 270 Degree Rotation
+void DIPFeatures::dipRotation270()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Rotation_270_Degree(m_input);
+    }
+}
+
+// Implementation of Rotation for any degree
+void DIPFeatures::dipRotation(int xorigin, int yorigin, double angle)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Rotation(m_input, xorigin, yorigin, angle);
+    }
+}
+

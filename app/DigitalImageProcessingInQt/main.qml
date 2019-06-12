@@ -774,9 +774,21 @@ Rectangle {
         dipFeatures.dipStartTimer()
 
         // The feature is decided by global property current_feature
-        if(current_feature == Common.RGB2Gray){
+        if(current_feature === Common.RGB2Gray){
             dipFeatures.dipConvertRGBToGrayScale()
-        }else if(current_feature == Common.HistogramEqualization){
+        }else if(current_feature === Common.FlipVer){
+            dipFeatures.dipFlipVertical()
+        }else if(current_feature === Common.FlipHor){
+            dipFeatures.dipFlipHorizontal()
+        }else if(current_feature === Common.Rot90){
+            dipFeatures.dipRotation90()
+        }else if(current_feature === Common.Rot180){
+            dipFeatures.dipRotation180()
+        }else if(current_feature === Common.Rot270){
+            dipFeatures.dipRotation270()
+        }else if(current_feature === Common.Rot){
+            dipFeatures.dipRotation(scene.xorigin, scene.yorigin, scene.angle)
+        }else if(current_feature === Common.HistogramEqualization){
             dipFeatures.dipHistogramEqualization(256, scene.newGrays)
         }
 

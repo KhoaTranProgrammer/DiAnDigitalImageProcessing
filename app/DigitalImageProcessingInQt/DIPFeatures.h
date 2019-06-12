@@ -67,6 +67,13 @@ public slots:
     // Convert RGB to grayscale
     void dipConvertRGBToGrayScale();
 
+    // Group of Image Rotation Features
+    void dipFlipVertical();     // Vertical Flipping
+    void dipFlipHorizontal();   // Horizontal Flipping
+    void dipRotation90();       // 90 Degree Rotation
+    void dipRotation180();      // 180 Degree Rotation
+    void dipRotation270();      // 270 Degree Rotation
+    void dipRotation(int xorigin, int yorigin, double angle);   // Rotation for any degree
 private:
     // Use for measuring processing time
     QElapsedTimer m_timer;

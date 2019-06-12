@@ -15,5 +15,6 @@
         <file>control/HistogramControl.qml</file>
         <file>control/CustomSlider.qml</file>
         <file>control/HistogramEqualizationControl.qml</file>
+        <file>control/RotationControl.qml</file>
     </qresource>
 </RCC>
