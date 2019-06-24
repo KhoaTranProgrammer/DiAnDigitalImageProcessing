@@ -790,6 +790,22 @@ Rectangle {
             dipFeatures.dipRotation(scene.xorigin, scene.yorigin, scene.angle)
         }else if(current_feature === Common.HistogramEqualization){
             dipFeatures.dipHistogramEqualization(256, scene.newGrays)
+        }else if(current_feature == Common.MathAdd){
+            dipFeatures.dipMathAdd(scene.pValue)
+        }else if(current_feature == Common.MathSubtract){
+            dipFeatures.dipMathSubtract(scene.pValue)
+        }else if(current_feature == Common.MathAnd){
+            dipFeatures.dipMathAnd(scene.pValue)
+        }else if(current_feature == Common.MathOr){
+            dipFeatures.dipMathOr(scene.pValue)
+        }else if(current_feature == Common.MathXor){
+            dipFeatures.dipMathXor(scene.pValue)
+        }else if(current_feature == Common.MathNot){
+            dipFeatures.dipMathNot()
+        }else if(current_feature == Common.MathNand){
+            dipFeatures.dipMathNand(scene.pValue)
+        }else if(current_feature == Common.MathNor){
+            dipFeatures.dipMathNor(scene.pValue)
         }
 
         // Stop counting timer and display result

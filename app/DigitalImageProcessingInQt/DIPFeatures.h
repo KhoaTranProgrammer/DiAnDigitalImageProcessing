@@ -74,6 +74,17 @@ public slots:
     void dipRotation180();      // 180 Degree Rotation
     void dipRotation270();      // 270 Degree Rotation
     void dipRotation(int xorigin, int yorigin, double angle);   // Rotation for any degree
+
+    // Group of Mathematic Features
+    void dipMathAdd(int value);
+    void dipMathSubtract(int value);
+    void dipMathAnd(int value);
+    void dipMathOr(int value);
+    void dipMathXor(int value);
+    void dipMathNot();
+    void dipMathNand(int value);
+    void dipMathNor(int value);
+
 private:
     // Use for measuring processing time
     QElapsedTimer m_timer;

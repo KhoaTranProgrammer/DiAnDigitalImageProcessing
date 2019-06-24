@@ -2,6 +2,7 @@
 #include "DADIP_Convert.h"
 #include "DADIP_Rotate.h"
 #include "DADIP_BMP.h"
+#include "DADIP_Math.h"
 
 // The static instance of DIPFeatures
 static DIPFeatures *myDIPFeatures = NULL;
@@ -326,3 +327,74 @@ void DIPFeatures::dipRotation(int xorigin, int yorigin, double angle)
     }
 }
 
+// Implementation of Mathematic Add
+void DIPFeatures::dipMathAdd(int value)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Math_Add(m_input, value);
+    }
+}
+
+// Implementation of Mathematic Subtract
+void DIPFeatures::dipMathSubtract(int value)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Math_Subtract(m_input, value);
+    }
+}
+
+// Implementation of Mathematic And
+void DIPFeatures::dipMathAnd(int value)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Math_And(m_input, value);
+    }
+}
+
+// Implementation of Mathematic Or
+void DIPFeatures::dipMathOr(int value)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Math_Or(m_input, value);
+    }
+}
+
+// Implementation of Mathematic Xor
+void DIPFeatures::dipMathXor(int value)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Math_Xor(m_input, value);
+    }
+}
+
+// Implementation of Mathematic Not
+void DIPFeatures::dipMathNot()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Math_Not(m_input);
+    }
+}
+
+// Implementation of Mathematic Nand
+void DIPFeatures::dipMathNand(int value)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Math_Nand(m_input, value);
+    }
+}
+
+// Implementation of Mathematic Nor
+void DIPFeatures::dipMathNor(int value)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Math_Nor(m_input, value);
+    }
+}

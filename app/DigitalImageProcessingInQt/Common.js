@@ -9,6 +9,14 @@ var Rot180 = "Rotate180"
 var Rot270 = "Rotate270"
 var Rot = "RotateAny"
 var HistogramEqualization = "HistogramEqualization"
+var MathAdd = "Add"
+var MathSubtract = "Subtract"
+var MathAnd = "And"
+var MathOr = "Or"
+var MathXor = "Xor"
+var MathNot = "Not"
+var MathNand = "Nand"
+var MathNor = "Nor"
 
 /*
  Group format
@@ -53,9 +61,23 @@ var group_histogram = [
     /* FeatureItem */ HistogramEqualization, "HistogramEqualizationControl.qml", "Function: DaDip_Histogram_Equalization. API to perform histogram equalization of input image"
 ]
 
+// Group of Mathematic Features
+var group_math = [
+    /* GroupItem */ "Mathematic", GroupItem, "",
+    /* FeatureItem */ MathAdd, "MathControl.qml", "Function: DaDip_Math_Add. API to implement the basic algebra function Add",
+    /* FeatureItem */ MathSubtract, "MathControl.qml", "Function: DaDip_Math_Subtract. API to implement the basic algebra function Subtract",
+    /* FeatureItem */ MathAnd, "MathControl.qml", "Function: DaDip_Math_And. API to implement the basic algebra function And",
+    /* FeatureItem */ MathOr, "MathControl.qml", "Function: DaDip_Math_Or. API to implement the basic algebra function Or",
+    /* FeatureItem */ MathXor, "MathControl.qml", "Function: DaDip_Math_Xor. API to implement the basic algebra function Xor",
+    /* FeatureItem */ MathNot, "", "Function: DaDip_Math_Not. API to implement the basic algebra function Not",
+    /* FeatureItem */ MathNand, "MathControl.qml", "Function: DaDip_Math_Nand. API to implement the basic algebra function Nand",
+    /* FeatureItem */ MathNor, "MathControl.qml", "Function: DaDip_Math_Nor. API to implement the basic algebra function Nor"
+]
+
 // List of all groups. It is directly used by application to add feature list
 var group_list = [
     /* Group of Convert Features */ group_convert,
     /* Group of Histogram Features */ group_histogram,
-    /* Group of Rotation Features */ group_rotate
+    /* Group of Rotation Features */ group_rotate,
+    /* Group of Mathematic Features */ group_math
 ]
