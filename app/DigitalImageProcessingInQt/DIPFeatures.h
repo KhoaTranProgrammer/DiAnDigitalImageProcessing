@@ -85,6 +85,22 @@ public slots:
     void dipMathNand(int value);
     void dipMathNor(int value);
 
+    // Image Overlay by Non Zero mode
+    void dipOverlayNonZero(int startrowofimg1, int startrowofimg2, int newheight,
+                  int startcolofimg1, int startcolofimg2, int newwidth);
+    // Image Overlay by Zero mode
+    void dipOverlayZero(int startrowofimg1, int startrowofimg2, int newheight,
+                  int startcolofimg1, int startcolofimg2, int newwidth);
+    // Image Overlay by Greater mode
+    void dipOverlayGreater(int startrowofimg1, int startrowofimg2, int newheight,
+                  int startcolofimg1, int startcolofimg2, int newwidth);
+    // Image Overlay by Less mode
+    void dipOverlayLess(int startrowofimg1, int startrowofimg2, int newheight,
+                  int startcolofimg1, int startcolofimg2, int newwidth);
+    // Image Overlay by Average mode
+    void dipOverlayAverage(int startrowofimg1, int startrowofimg2, int newheight,
+                  int startcolofimg1, int startcolofimg2, int newwidth);
+
 private:
     // Use for measuring processing time
     QElapsedTimer m_timer;

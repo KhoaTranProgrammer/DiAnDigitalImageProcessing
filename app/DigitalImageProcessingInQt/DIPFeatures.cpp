@@ -3,6 +3,7 @@
 #include "DADIP_Rotate.h"
 #include "DADIP_BMP.h"
 #include "DADIP_Math.h"
+#include "DADIP_Overlay.h"
 
 // The static instance of DIPFeatures
 static DIPFeatures *myDIPFeatures = NULL;
@@ -396,5 +397,110 @@ void DIPFeatures::dipMathNor(int value)
     if(m_state == DIP_LOADED) {
         if(m_output != NULL) m_output->destroy(m_output);
         m_output = DaDip_Math_Nor(m_input, value);
+    }
+}
+
+// Implementation of Image Overlay by Non Zero mode
+void DIPFeatures::dipOverlayNonZero(int startrowofimg1, int startrowofimg2, int newheight,
+              int startcolofimg1, int startcolofimg2, int newwidth)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+
+        // The second image are used for this feature
+        DADIP_PTRIMAGE image2;
+        QByteArray array;
+        QString sala = PROJECT_PATH;
+        sala += "/image/sala.bmp";
+        array = sala.toLocal8Bit();
+        DaDip_Check_Image_Type(&image2, (dadip_char*)array.data());
+        image2->parseImage(image2);
+
+        m_output = DaDip_Overlay_NonZero(m_input, image2, startrowofimg1, startrowofimg2, newheight,
+                                                   startcolofimg1, startcolofimg2, newwidth);
+    }
+}
+
+// Implementation of Image Overlay by Zero mode
+void DIPFeatures::dipOverlayZero(int startrowofimg1, int startrowofimg2, int newheight,
+              int startcolofimg1, int startcolofimg2, int newwidth)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+
+        // The second image are used for this feature
+        DADIP_PTRIMAGE image2;
+        QByteArray array;
+        QString sala = PROJECT_PATH;
+        sala += "/image/sala.bmp";
+        array = sala.toLocal8Bit();
+        DaDip_Check_Image_Type(&image2, (dadip_char*)array.data());
+        image2->parseImage(image2);
+
+        m_output = DaDip_Overlay_Zero(m_input, image2, startrowofimg1, startrowofimg2, newheight,
+                                                   startcolofimg1, startcolofimg2, newwidth);
+    }
+}
+
+// Implementation of Image Overlay by Greater mode
+void DIPFeatures::dipOverlayGreater(int startrowofimg1, int startrowofimg2, int newheight,
+              int startcolofimg1, int startcolofimg2, int newwidth)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+
+        // The second image are used for this feature
+        DADIP_PTRIMAGE image2;
+        QByteArray array;
+        QString sala = PROJECT_PATH;
+        sala += "/image/sala.bmp";
+        array = sala.toLocal8Bit();
+        DaDip_Check_Image_Type(&image2, (dadip_char*)array.data());
+        image2->parseImage(image2);
+
+        m_output = DaDip_Overlay_Greater(m_input, image2, startrowofimg1, startrowofimg2, newheight,
+                                                   startcolofimg1, startcolofimg2, newwidth);
+    }
+}
+
+// Implementation of Image Overlay by Less mode
+void DIPFeatures::dipOverlayLess(int startrowofimg1, int startrowofimg2, int newheight,
+              int startcolofimg1, int startcolofimg2, int newwidth)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+
+        // The second image are used for this feature
+        DADIP_PTRIMAGE image2;
+        QByteArray array;
+        QString sala = PROJECT_PATH;
+        sala += "/image/sala.bmp";
+        array = sala.toLocal8Bit();
+        DaDip_Check_Image_Type(&image2, (dadip_char*)array.data());
+        image2->parseImage(image2);
+
+        m_output = DaDip_Overlay_Less(m_input, image2, startrowofimg1, startrowofimg2, newheight,
+                                                   startcolofimg1, startcolofimg2, newwidth);
+    }
+}
+
+// Implementation of Image Overlay by Average mode
+void DIPFeatures::dipOverlayAverage(int startrowofimg1, int startrowofimg2, int newheight,
+              int startcolofimg1, int startcolofimg2, int newwidth)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+
+        // The second image are used for this feature
+        DADIP_PTRIMAGE image2;
+        QByteArray array;
+        QString sala = PROJECT_PATH;
+        sala += "/image/sala.bmp";
+        array = sala.toLocal8Bit();
+        DaDip_Check_Image_Type(&image2, (dadip_char*)array.data());
+        image2->parseImage(image2);
+
+        m_output = DaDip_Overlay_Average(m_input, image2, startrowofimg1, startrowofimg2, newheight,
+                                                   startcolofimg1, startcolofimg2, newwidth);
     }
 }

@@ -806,6 +806,21 @@ Rectangle {
             dipFeatures.dipMathNand(scene.pValue)
         }else if(current_feature == Common.MathNor){
             dipFeatures.dipMathNor(scene.pValue)
+        }else if(current_feature == Common.OverlayNonZero){
+            dipFeatures.dipOverlayNonZero(scene.startrowofimg1, scene.startrowofimg2, scene.newheight,
+                                 scene.startcolofimg1, scene.startcolofimg2, scene.newwidth)
+        }else if(current_feature == Common.OverlayZero){
+            dipFeatures.dipOverlayZero(scene.startrowofimg1, scene.startrowofimg2, scene.newheight,
+                                 scene.startcolofimg1, scene.startcolofimg2, scene.newwidth)
+        }else if(current_feature == Common.OverlayGreater){
+            dipFeatures.dipOverlayGreater(scene.startrowofimg1, scene.startrowofimg2, scene.newheight,
+                                 scene.startcolofimg1, scene.startcolofimg2, scene.newwidth)
+        }else if(current_feature == Common.OverlayLess){
+            dipFeatures.dipOverlayLess(scene.startrowofimg1, scene.startrowofimg2, scene.newheight,
+                                 scene.startcolofimg1, scene.startcolofimg2, scene.newwidth)
+        }else if(current_feature == Common.OverlayAverage){
+            dipFeatures.dipOverlayAverage(scene.startrowofimg1, scene.startrowofimg2, scene.newheight,
+                                 scene.startcolofimg1, scene.startcolofimg2, scene.newwidth)
         }
 
         // Stop counting timer and display result

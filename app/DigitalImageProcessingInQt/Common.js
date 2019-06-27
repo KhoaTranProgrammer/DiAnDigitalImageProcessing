@@ -17,6 +17,11 @@ var MathXor = "Xor"
 var MathNot = "Not"
 var MathNand = "Nand"
 var MathNor = "Nor"
+var OverlayNonZero = "NonZero"
+var OverlayZero = "Zero"
+var OverlayGreater = "Greater"
+var OverlayLess = "Less"
+var OverlayAverage = "Average"
 
 /*
  Group format
@@ -74,10 +79,21 @@ var group_math = [
     /* FeatureItem */ MathNor, "MathControl.qml", "Function: DaDip_Math_Nor. API to implement the basic algebra function Nor"
 ]
 
+// Group of Overlay Features
+var group_overlay = [
+    /* GroupItem */ "Overlay", GroupItem, "",
+    /* FeatureItem */ OverlayNonZero, "OverlayControl.qml", "Function: DaDip_Overlay_NonZero. API to overlays 2 input images by Non Zero mode. It writes any non-zero pixel from second input image on top of first input image",
+    /* FeatureItem */ OverlayZero, "OverlayControl.qml", "Function: DaDip_Overlay_Zero. API to overlays 2 input images by Zero mode. It writes any zero pixel from second input image on top of first input image",
+    /* FeatureItem */ OverlayGreater, "OverlayControl.qml", "Function: DaDip_Overlay_Greater. API to overlays 2 input images by Greater mode. It writes inputimg2 on top of inputimg1 if the value of second input image is greater than first input image",
+    /* FeatureItem */ OverlayLess, "OverlayControl.qml", "Function: DaDip_Overlay_Less. API to overlays 2 input images by Less mode. It writes inputimg2 on top of inputimg1 if the value of second input image is less than first input image",
+    /* FeatureItem */ OverlayAverage, "OverlayControl.qml", "Function: DaDip_Overlay_Average. API to overlays 2 input images by Average mode. It writes the average of first input image and second input image to the output image"
+]
+
 // List of all groups. It is directly used by application to add feature list
 var group_list = [
     /* Group of Convert Features */ group_convert,
     /* Group of Histogram Features */ group_histogram,
     /* Group of Rotation Features */ group_rotate,
-    /* Group of Mathematic Features */ group_math
+    /* Group of Mathematic Features */ group_math,
+    /* Group of Overlay Features */ group_overlay
 ]

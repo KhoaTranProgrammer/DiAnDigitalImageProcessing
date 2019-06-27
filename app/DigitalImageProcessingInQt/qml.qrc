@@ -17,5 +17,6 @@
         <file>control/HistogramEqualizationControl.qml</file>
         <file>control/RotationControl.qml</file>
         <file>control/MathControl.qml</file>
+        <file>control/OverlayControl.qml</file>
     </qresource>
 </RCC>
