@@ -101,6 +101,18 @@ public slots:
     void dipOverlayAverage(int startrowofimg1, int startrowofimg2, int newheight,
                   int startcolofimg1, int startcolofimg2, int newwidth);
 
+    // Image Geometry
+    void dipInvert();
+    void dipGeometry(float angle, float xstretch, float ystretch,
+                     int xdisplace, int ydisplace, float xcross, float ycross);
+    void dipStretch(float xstretch, float ystretch);
+    void dipCrop(int startrow, int startcol, int newheight, int newwidth);
+    void dipPaste(int startrowofimg1, int startrowofimg2, int newheight,
+                  int startcolofimg1, int startcolofimg2, int newwidth);
+    void dipWarp(int xcontrol, int ycontrol);
+    void dipObjectWarp(int x1, int y1, int x2, int y2,
+                       int x3, int y3, int x4, int y4);
+
 private:
     // Use for measuring processing time
     QElapsedTimer m_timer;

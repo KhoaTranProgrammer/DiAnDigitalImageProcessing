@@ -22,6 +22,13 @@ var OverlayZero = "Zero"
 var OverlayGreater = "Greater"
 var OverlayLess = "Less"
 var OverlayAverage = "Average"
+var Invert = "Invert"
+var Geometry = "Geometry"
+var Stretch = "Stretch"
+var Crop = "Crop"
+var Paste = "Paste"
+var Warp = "Warp"
+var ObjectWarp = "ObjectWarp"
 
 /*
  Group format
@@ -89,11 +96,24 @@ var group_overlay = [
     /* FeatureItem */ OverlayAverage, "OverlayControl.qml", "Function: DaDip_Overlay_Average. API to overlays 2 input images by Average mode. It writes the average of first input image and second input image to the output image"
 ]
 
+// Group of Geometry Features
+var group_geometry = [
+    /* GroupItem */ "Geometrys", GroupItem, "",
+    /* FeatureItem */ Invert, "", "Function: DaDip_Invert. API to invert the pixels in an image. Output image appear as negative",
+    /* FeatureItem */ Geometry, "GeometryControl.qml", "Function: DaDip_Geometry. API to perform three Basic Geometric Operations: Displacement, Stretching, and Rotation",
+    /* FeatureItem */ Stretch, "StretchControl.qml", "Function: DaDip_Stretch. API to perform the processing to enlarge and shrink an entire image",
+    /* FeatureItem */ Crop, "CropControl.qml", "Function: DaDip_Crop. API to select the specific area of image",
+    /* FeatureItem */ Paste, "PasteControl.qml", "Function: DaDip_Paste. API to combine 2 input images inside 1 output image",
+    /* FeatureItem */ Warp, "WarpControl.qml", "Function: DaDip_Warp. API to warps a rowsxcols section of an image by using control points(x,y)",
+    /* FeatureItem */ ObjectWarp, "ObjectWarpControl.qml", "Function: DaDip_Object_Warp. API to warps a rowsxcols section of an image by using four corners of a four side figure"
+]
+
 // List of all groups. It is directly used by application to add feature list
 var group_list = [
     /* Group of Convert Features */ group_convert,
     /* Group of Histogram Features */ group_histogram,
     /* Group of Rotation Features */ group_rotate,
     /* Group of Mathematic Features */ group_math,
-    /* Group of Overlay Features */ group_overlay
+    /* Group of Overlay Features */ group_overlay,
+    /* Group of Geometry Features */ group_geometry
 ]

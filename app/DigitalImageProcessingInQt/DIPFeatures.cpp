@@ -4,6 +4,8 @@
 #include "DADIP_BMP.h"
 #include "DADIP_Math.h"
 #include "DADIP_Overlay.h"
+#include "DADIP_Geometry.h"
+#include "DADIP_Warping.h"
 
 // The static instance of DIPFeatures
 static DIPFeatures *myDIPFeatures = NULL;
@@ -502,5 +504,76 @@ void DIPFeatures::dipOverlayAverage(int startrowofimg1, int startrowofimg2, int 
 
         m_output = DaDip_Overlay_Average(m_input, image2, startrowofimg1, startrowofimg2, newheight,
                                                    startcolofimg1, startcolofimg2, newwidth);
+    }
+}
+
+// Implementation of image Invert
+void DIPFeatures::dipInvert()
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Invert(m_input);
+    }
+}
+
+// Implementation of image Geometry
+void DIPFeatures::dipGeometry(float angle, float xstretch, float ystretch,
+                              int xdisplace, int ydisplace, float xcross, float ycross)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Geometry(m_input, angle, xstretch, ystretch,
+                                  xdisplace, ydisplace, xcross, ycross);
+    }
+}
+
+// Implementation of image Stretch
+void DIPFeatures::dipStretch(float xstretch, float ystretch)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Stretch(m_input, xstretch, ystretch);
+    }
+}
+
+// Implementation of image Crop
+void DIPFeatures::dipCrop(int startrow, int startcol, int newheight, int newwidth)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Crop(m_input, startrow, startcol, newheight, newwidth);
+    }
+}
+
+// Implementation of image Paste
+void DIPFeatures::dipPaste(int startrowofimg1, int startrowofimg2, int newheight,
+              int startcolofimg1, int startcolofimg2, int newwidth)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+
+        // Create the second image output from 90 Degree Rotation of Input image
+        DADIP_PTRIMAGE image2 = DaDip_Rotation_90_Degree(m_input);
+        m_output = DaDip_Paste(m_input, image2, startrowofimg1, startrowofimg2, newheight,
+                                                   startcolofimg1, startcolofimg2, newwidth);
+    }
+}
+
+// Implementation of image Warp
+void DIPFeatures::dipWarp(int xcontrol, int ycontrol)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Warp(m_input, xcontrol, ycontrol);
+    }
+}
+
+// Implementation of Object Warp
+void DIPFeatures::dipObjectWarp(int x1, int y1, int x2, int y2,
+                   int x3, int y3, int x4, int y4)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Object_Warp(m_input, x1, y1, x2, y2, x3, y3, x4, y4);
     }
 }

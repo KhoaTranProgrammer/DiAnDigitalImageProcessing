@@ -821,6 +821,21 @@ Rectangle {
         }else if(current_feature == Common.OverlayAverage){
             dipFeatures.dipOverlayAverage(scene.startrowofimg1, scene.startrowofimg2, scene.newheight,
                                  scene.startcolofimg1, scene.startcolofimg2, scene.newwidth)
+        }else if(current_feature == Common.Invert){
+            dipFeatures.dipInvert()
+        }else if(current_feature == Common.Geometry){
+            dipFeatures.dipGeometry(scene.angle, scene.xstretch, scene.ystretch, scene.xdisplace, scene.ydisplace, scene.xcross, scene.ycross)
+        }else if(current_feature == Common.Stretch){
+            dipFeatures.dipStretch(scene.xstretch, scene.ystretch)
+        }else if(current_feature == Common.Crop){
+            dipFeatures.dipCrop(scene.startrow, scene.startcol, scene.newheight, scene.newwidth)
+        }else if(current_feature == Common.Paste){
+            dipFeatures.dipPaste(scene.startrowofimg1, scene.startrowofimg2, scene.newheight,
+                                 scene.startcolofimg1, scene.startcolofimg2, scene.newwidth)
+        }else if(current_feature == Common.Warp){
+            dipFeatures.dipWarp(scene.xcontrol, scene.ycontrol)
+        }else if(current_feature == Common.ObjectWarp){
+            dipFeatures.dipObjectWarp(scene.x1, scene.y1, scene.x2, scene.y2, scene.x3, scene.y3, scene.x4, scene.y4)
         }
 
         // Stop counting timer and display result

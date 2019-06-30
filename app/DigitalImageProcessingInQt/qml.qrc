@@ -18,5 +18,11 @@
         <file>control/RotationControl.qml</file>
         <file>control/MathControl.qml</file>
         <file>control/OverlayControl.qml</file>
+        <file>control/GeometryControl.qml</file>
+        <file>control/StretchControl.qml</file>
+        <file>control/CropControl.qml</file>
+        <file>control/PasteControl.qml</file>
+        <file>control/WarpControl.qml</file>
+        <file>control/ObjectWarpControl.qml</file>
     </qresource>
 </RCC>
