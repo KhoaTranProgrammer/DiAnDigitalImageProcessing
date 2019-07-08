@@ -24,5 +24,7 @@
         <file>control/PasteControl.qml</file>
         <file>control/WarpControl.qml</file>
         <file>control/ObjectWarpControl.qml</file>
+        <file>control/FilterControl.qml</file>
+        <file>control/MedianFilterControl.qml</file>
     </qresource>
 </RCC>

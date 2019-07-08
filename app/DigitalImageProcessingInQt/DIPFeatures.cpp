@@ -6,6 +6,7 @@
 #include "DADIP_Overlay.h"
 #include "DADIP_Geometry.h"
 #include "DADIP_Warping.h"
+#include "DADIP_Filter.h"
 
 // The static instance of DIPFeatures
 static DIPFeatures *myDIPFeatures = NULL;
@@ -575,5 +576,42 @@ void DIPFeatures::dipObjectWarp(int x1, int y1, int x2, int y2,
     if(m_state == DIP_LOADED) {
         if(m_output != NULL) m_output->destroy(m_output);
         m_output = DaDip_Object_Warp(m_input, x1, y1, x2, y2, x3, y3, x4, y4);
+    }
+}
+
+// Implementation of Image Filter
+void DIPFeatures::dipFilterImage(int masktype, int lowhigh)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+
+        int mask;
+        if(masktype == 2) {
+            mask = DADIP_FILTER_2;
+        }else if(masktype == 3) {
+            mask = DADIP_FILTER_3;
+        }else if(masktype == 4) {
+            mask = DADIP_FILTER_6;
+        }else if(masktype == 5) {
+            mask = DADIP_FILTER_9;
+        }else if(masktype == 6) {
+            mask = DADIP_FILTER_10;
+        }else if(masktype == 7) {
+            mask = DADIP_FILTER_16;
+        }else if(masktype == 8) {
+            mask = DADIP_FILTER_32;
+        }else {
+            mask = DADIP_FILTER_1;
+        }
+        m_output = DaDip_Filter_Image(m_input, mask, lowhigh);
+    }
+}
+
+// Implementation of Median Filter
+void DIPFeatures::dipMedianFilter(int size)
+{
+    if(m_state == DIP_LOADED) {
+        if(m_output != NULL) m_output->destroy(m_output);
+        m_output = DaDip_Median_Filter(m_input, size);
     }
 }

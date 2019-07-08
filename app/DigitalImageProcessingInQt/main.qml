@@ -836,6 +836,10 @@ Rectangle {
             dipFeatures.dipWarp(scene.xcontrol, scene.ycontrol)
         }else if(current_feature == Common.ObjectWarp){
             dipFeatures.dipObjectWarp(scene.x1, scene.y1, scene.x2, scene.y2, scene.x3, scene.y3, scene.x4, scene.y4)
+        }else if(current_feature == Common.FilterImage){
+            dipFeatures.dipFilterImage(scene.masktype, scene.lowhigh)
+        }else if(current_feature == Common.MedianFilter){
+            dipFeatures.dipMedianFilter(scene.size)
         }
 
         // Stop counting timer and display result

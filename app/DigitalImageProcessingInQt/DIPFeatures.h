@@ -113,6 +113,9 @@ public slots:
     void dipObjectWarp(int x1, int y1, int x2, int y2,
                        int x3, int y3, int x4, int y4);
 
+    // Filter features
+    void dipFilterImage(int masktype, int lowhigh);
+    void dipMedianFilter(int size);
 private:
     // Use for measuring processing time
     QElapsedTimer m_timer;

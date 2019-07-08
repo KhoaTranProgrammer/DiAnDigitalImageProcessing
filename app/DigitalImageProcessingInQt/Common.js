@@ -29,6 +29,8 @@ var Crop = "Crop"
 var Paste = "Paste"
 var Warp = "Warp"
 var ObjectWarp = "ObjectWarp"
+var FilterImage = "FilterImage"
+var MedianFilter = "MedianFilter"
 
 /*
  Group format
@@ -108,6 +110,13 @@ var group_geometry = [
     /* FeatureItem */ ObjectWarp, "ObjectWarpControl.qml", "Function: DaDip_Object_Warp. API to warps a rowsxcols section of an image by using four corners of a four side figure"
 ]
 
+// Group of Filter Features
+var group_filter = [
+    "Filter", GroupItem, "",
+    FilterImage, "FilterControl.qml", "Function: DaDip_Filter_Image. API to filters an image by using a single 3x3 mask",
+    MedianFilter, "MedianFilterControl.qml", "Function: DaDip_Median_Filter. API to performs a median filter on an image using a size (3x3, 5x5, ...)"
+]
+
 // List of all groups. It is directly used by application to add feature list
 var group_list = [
     /* Group of Convert Features */ group_convert,
@@ -115,5 +124,6 @@ var group_list = [
     /* Group of Rotation Features */ group_rotate,
     /* Group of Mathematic Features */ group_math,
     /* Group of Overlay Features */ group_overlay,
-    /* Group of Geometry Features */ group_geometry
+    /* Group of Geometry Features */ group_geometry,
+    /* Group of Filter Features */ group_filter
 ]
